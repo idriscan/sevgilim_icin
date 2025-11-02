@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Senin İçin 💖</title>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  h1 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+    white-space: pre-wrap;
+  }
+
+  h1.show {
+    opacity: 1;
+    transform: translateY(0);
+    font-size: 3.5em;
+    color: #ff1493;
+    animation: pulse 1.5s infinite;
+  }
+
+  p {
+    font-size: 1.5em;
+    margin-top: 20px;
+    color: #fff0f5;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+  }
+
+  p.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .heart {
+    font-size: 2em;
+    margin-top: 10px;
+    opacity: 0;
+    animation: beat 1s infinite;
+  }
+
+  .heart.show {
+    opacity: 1;
+  }
+
+  #continueBtn {
+    margin-top: 30px;
+    padding: 10px 25px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 12px;
+    background-color: #ff1493;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    opacity: 0;
+  }
+
+  #continueBtn.show {
+    opacity: 1;
+  }
+
+  #continueBtn:hover {
+    background-color: #ff69b4;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+
+  .flying-heart {
+    position: absolute;
+    font-size: 1.2em;
+    animation: floatUp linear forwards;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity:1; }
+    100% { transform: translateY(-600px) scale(0.5); opacity:0; }
+  }
+
+  .sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff0f5;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: sparkleMove linear infinite;
+  }
+
+  @keyframes sparkleMove {
+    0% { transform: translateY(0) translateX(0) scale(1); opacity:0.8;}
+    100% { transform: translateY(-500px) translateX(50px) scale(0.2); opacity:0;}
+  }
+</style>
+</head>
+<body>
+<h1 id="message"></h1>
+<p id="note"></p>
+<div class="heart" id="heart">💖</div>
+<button id="continueBtn">Devam Et</button>
+
+<script>
+  const messages = [
+    {text: "Merhaba 😊", note: ""},
+    {text: "Seni dünyalar kadar çoooook seviyorum 💖", note: ""},
+    {text: "Senin için her zaman, her yerde yanında olurum 🤍", note: ""},
+    {text: "Sen gülünce dünya daha güzel 🌸", note: ""},
+    {text: "Seninle her anımı paylaşmak istiyorum 💓", note: ""},
+    {text: "İyi ki varsın ve iyi ki benimlesin 💞", note: ""},
+    {text: "Seninle geçirdiğim her an paha biçilemez 💖", note: ""},
+    {text: "Hayatımın en güzel kısmı sensin 💫", note: ""},
+    {text: "Sana her zaman güvenebilirim, sen benim her şeyimsin 🤍", note: ""},
+    {text: "Sonsuza kadar seninle olmak istiyorum 💞", note: ""}
+    {text: "Kendimi en geç bu akşam düzelteceğim ddddddddddd", note: ""}
+  ];
+
+  let current = 0;
+  const msgEl = document.getElementById('message');
+  const noteEl = document.getElementById('note');
+  const heartEl = document.getElementById('heart');
+  const btnEl = document.getElementById('continueBtn');
+
+  function showMessage(index) {
+    msgEl.textContent = "";
+    noteEl.textContent = "";
+    typeText(msgEl, messages[index].text, 50);
+    if(messages[index].note) noteEl.textContent = messages[index].note;
+    heartEl.classList.add('show');
+    if(index < messages.length - 1) btnEl.classList.add('show');
+    else btnEl.style.display = "none";
+  }
+
+  function typeText(element, text, speed) {
+    let i = 0;
+    element.classList.add('show');
+    let timer = setInterval(() => {
+      element.textContent += text.charAt(i);
+      i++;
+      if(i > text.length) clearInterval(timer);
+    }, speed);
+  }
+
+  btnEl.addEventListener('click', () => {
+    btnEl.classList.remove('show');
+    current++;
+    showMessage(current);
+  });
+
+  // Başlangıç
+  setTimeout(() => showMessage(current), 500);
+
+  // Sürekli uçan kalpler
+  function startFlyingHearts() {
+    setInterval(() => {
+      let heart = document.createElement('div');
+      heart.classList.add('flying-heart');
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = window.innerHeight + "px"; // ekranın altından başlasın
+      heart.style.animationDuration = (3 + Math.random()*3) + "s";
+      heart.textContent = "💖";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 500); // her 0.5 saniyede bir yeni kalp
+  }
+
+  // Sürekli sparkle
+  function startSparkles() {
+    setInterval(() => {
+      let sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = Math.random() * window.innerWidth + "px";
+      sparkle.style.top = Math.random() * window.innerHeight + "px";
+      sparkle.style.animationDuration = (3 + Math.random()*3) + "s";
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 6000);
+    }, 400);
+  }
+
+  // Sayfa açılınca başlat
+  startFlyingHearts();
+  startSparkles();
+
+</script>
+</body>
+</html>
