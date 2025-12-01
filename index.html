@@ -1,112 +1,137 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sadece Senden Özür Dilemek İçin...</title>
-    <style>
-        /* Genel Stil ve Arka Plan */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #F8BBD0; /* Açık Pembe - Sitenin arka planı */
-            color: #333;
-            text-align: center;
-            padding: 50px;
-            cursor: pointer;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: #fff;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-            margin: 50px auto;
-            position: relative;
-            z-index: 10;
-        }
-        /* Ana Başlık Stili (Daha Koyu Pembe) */
-        h1 {
-            color: #E91E63; /* Canlı Pembe - Ana yazı rengi (Başlık) */
-            margin-bottom: 20px;
-        }
-        /* Metin Stili (Açık Pembe) */
-        p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #FFC0CB; /* Daha Açık Pembe - Gövde metin rengi */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Metni biraz daha okunur yapar */
-        }
-        .imza {
-            margin-top: 30px;
-            font-style: italic;
-            font-weight: bold;
-        }
-
-        /* Tıklama Efekti Stili */
-        .flying-text {
-            position: absolute;
-            font-size: 1.1em;
-            font-weight: bold;
-            color: white; /* Yazı rengi beyaz */
-            background-color: #9C27B0; /* Mor - Çıkan yazıların arka planı */
-            padding: 5px 10px;
-            border-radius: 5px;
-            pointer-events: none;
-            user-select: none;
-            animation: fly-up 1.5s ease-out forwards;
-            z-index: 20;
-            white-space: nowrap;
-        }
-        @keyframes fly-up {
-            0% { transform: translateY(0) scale(1) translate(-50%, -50%); opacity: 1; }
-            100% { transform: translateY(-40px) scale(0.9) translate(-50%, -50%); opacity: 0; }
-        }
-    </style>
+<meta charset="utf-8">
+<title>Özür Dilerim</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body{
+        margin:0;
+        font-family: "Inter", Arial, sans-serif;
+        background:#fff5f7;
+        text-align:center;
+        padding:40px 20px;
+    }
+    h1{
+        font-size:42px;
+        color:#d62452;
+        margin-bottom:40px;
+        font-weight:800;
+    }
+    button{
+        background:#d62452;
+        color:white;
+        padding:16px 28px;
+        border:none;
+        border-radius:14px;
+        font-size:20px;
+        font-weight:700;
+        cursor:pointer;
+        box-shadow:0 6px 20px rgba(214,36,82,0.3);
+        transition:0.2s;
+    }
+    button:hover{
+        transform:scale(1.05);
+    }
+    #msg{
+        margin-top:24px;
+        font-size:20px;
+        color:#444;
+        min-height:32px;
+    }
+    .poem{
+        margin-top:60px;
+        font-size:18px;
+        line-height:1.5;
+        color:#333;
+        background:white;
+        padding:20px;
+        border-radius:14px;
+        max-width:520px;
+        margin-left:auto;
+        margin-right:auto;
+        box-shadow:0 8px 30px rgba(0,0,0,0.06);
+    }
+</style>
 </head>
-<body onclick="showFlyingText(event)">
+<body>
 
-<div class="container">
-    <h1>Canım Sevgilim ❤️, Senden Çok Özür Dilerim!</h1>
-    
-    <p>O gün 9 Adalet sınıfına girmemle ilgili yaptığım şeyin seni ne kadar üzdüğünü ve kırgın hissettirdiğini anlıyorum. Benim için o an ne kadar sinirlendiysen, seni düşüncesizce kırdığım için ben de o kadar pişmanım.</p>
-    
-    <p>Biliyorum, bazen en sevdiklerimizi bile istemeden kırabiliyoruz. Ama bil ki, seni kaybetme düşüncesi, yaptığım hatanın büyüklüğünü bana gösterdi. Lütfen, kalbimdeki yerini ve sana olan sevgimin ne kadar büyük olduğunu gör ve beni affet.</p>
+<h1>ÖZÜR DİLERİM</h1>
 
-    <p>Söz veriyorum, bir daha seni bu kadar üzecek bir hata yapmayacağım. Sadece senin gülümsemen benim için her şeye bedel.</p>
-    
-    <p class="imza">Made By Seni ÇOOOOK seven idriscan</p>
+<button id="btn">Farklı Bir Dilde Özür Dinle</button>
+<div id="msg"></div>
+
+<div class="poem">
+    Bir hata yaptım ama sevgim dimdik duruyor.<br>
+    Kırdım ama kalbim senden yana…<br>
+    Affın bir cümle bile olsa,<br>
+    Ben o cümleyi sonsuza kadar saklarım.<br>
+    <br>
+    Bir anlık yanlış, uzun bir sessizliğe döndü.<br>
+    Beni en çok üzen de bu zaten…<br>
+    Yine de biliyorum:<br>
+    Sen istersen her şey düzelir,<br>
+    Ben de elimden geleni yapmaya hazırım.<br>
 </div>
 
 <script>
-    // Tıklandığında çıkacak rastgele mesajlar
-    const messages = [
-        "Özür Dilerim ❤️",
-        "Seni Seviyorum!",
-        "Affet Beni",
-        "Çok Pişmanım",
-        "Senin üzülmene dayanamıyorum",
-        "Sen Benim Her Şeyimsin",
-        "Sana Sevdalıyım",
-        "Lütfen Affet"
+    // Farklı dillerde "özür dilerim" metinleri
+    const apologies = [
+        ["Türkçe", "Özür dilerim"],
+        ["English", "I'm sorry"],
+        ["Français", "Je suis désolé"],
+        ["Deutsch", "Es tut mir leid"],
+        ["Español", "Lo siento"],
+        ["Italiano", "Mi dispiace"],
+        ["Русский", "Мне очень жаль"],
+        ["عربي", "أنا آسف"],
+        ["日本語", "ごめんなさい"],
+        ["한국어", "미안해요"],
+        ["中文", "对不起"],
+        ["Português", "Desculpa"],
+        ["Hindi", "मुझे माफ़ करें"],
+        ["Nederlands", "Het spijt me"],
+        ["Polski", "Przepraszam"],
+        ["Українська", "Вибачте"],
+        ["Čeština", "Promiň"],
+        ["Svenska", "Förlåt"],
+        ["Norsk", "Unnskyld"],
+        ["Română", "Îmi pare rău"]
     ];
 
-    function showFlyingText(event) {
-        const message = messages[Math.floor(Math.random() * messages.length)];
-        const textElement = document.createElement('div');
-        textElement.className = 'flying-text';
-        textElement.textContent = message;
+    let index = 0;
+    const msg = document.getElementById("msg");
+    const btn = document.getElementById("btn");
 
-        // Tıklanan yerin koordinatlarını ayarla
-        textElement.style.left = `${event.clientX}px`;
-        textElement.style.top = `${event.clientY}px`;
+    btn.onclick = () => {
+        let [lang, text] = apologies[index];
 
-        document.body.appendChild(textElement);
+        msg.textContent = lang + ": " + text;
 
-        setTimeout(() => {
-            textElement.remove();
-        }, 1500);
-    }
+        // Ses oluşturma – tarayıcı TTS
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = lang === "Türkçe" ? "tr-TR" : 
+                     lang === "English" ? "en-US" :
+                     lang === "Français" ? "fr-FR" :
+                     lang === "Deutsch" ? "de-DE" :
+                     lang === "Español" ? "es-ES" :
+                     lang === "Italiano" ? "it-IT" :
+                     lang === "Русский" ? "ru-RU" :
+                     lang === "عربي" ? "ar-SA" :
+                     lang === "日本語" ? "ja-JP" :
+                     lang === "한국어" ? "ko-KR" :
+                     lang === "中文" ? "zh-CN" :
+                     lang === "Português" ? "pt-PT" :
+                     lang === "Hindi" ? "hi-IN" :
+                     lang === "Nederlands" ? "nl-NL" :
+                     lang === "Polski" ? "pl-PL" :
+                     lang === "Українська" ? "uk-UA" :
+                     "en-US";
+
+        speechSynthesis.speak(utter);
+
+        index = (index + 1) % apologies.length;
+    };
 </script>
 
 </body>
