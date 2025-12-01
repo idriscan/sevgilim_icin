@@ -58,15 +58,14 @@
 
 <h1>ÖZÜR DİLERİM</h1>
 
-<button id="btn">Farklı Bir Dilde Özür Dinle</button>
+<button id="btn">Farklı Bir Dilde Özür Gör</button>
 <div id="msg"></div>
 
 <div class="poem">
     Bir hata yaptım ama sevgim dimdik duruyor.<br>
     Kırdım ama kalbim senden yana…<br>
     Affın bir cümle bile olsa,<br>
-    Ben o cümleyi sonsuza kadar saklarım.<br>
-    <br>
+    Ben o cümleyi sonsuza kadar saklarım.<br><br>
     Bir anlık yanlış, uzun bir sessizliğe döndü.<br>
     Beni en çok üzen de bu zaten…<br>
     Yine de biliyorum:<br>
@@ -75,7 +74,6 @@
 </div>
 
 <script>
-    // Farklı dillerde "özür dilerim" metinleri
     const apologies = [
         ["Türkçe", "Özür dilerim"],
         ["English", "I'm sorry"],
@@ -105,31 +103,7 @@
 
     btn.onclick = () => {
         let [lang, text] = apologies[index];
-
         msg.textContent = lang + ": " + text;
-
-        // Ses oluşturma – tarayıcı TTS
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = lang === "Türkçe" ? "tr-TR" : 
-                     lang === "English" ? "en-US" :
-                     lang === "Français" ? "fr-FR" :
-                     lang === "Deutsch" ? "de-DE" :
-                     lang === "Español" ? "es-ES" :
-                     lang === "Italiano" ? "it-IT" :
-                     lang === "Русский" ? "ru-RU" :
-                     lang === "عربي" ? "ar-SA" :
-                     lang === "日本語" ? "ja-JP" :
-                     lang === "한국어" ? "ko-KR" :
-                     lang === "中文" ? "zh-CN" :
-                     lang === "Português" ? "pt-PT" :
-                     lang === "Hindi" ? "hi-IN" :
-                     lang === "Nederlands" ? "nl-NL" :
-                     lang === "Polski" ? "pl-PL" :
-                     lang === "Українська" ? "uk-UA" :
-                     "en-US";
-
-        speechSynthesis.speak(utter);
-
         index = (index + 1) % apologies.length;
     };
 </script>
